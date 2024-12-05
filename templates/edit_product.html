@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inventory tracker</title>
+        <style>
+            body {
+                margin: 20px;
+                background-color: #f9f9f9;
+                color: #333;
+            }
+
+            h1, h2 {
+                text-align: center;
+                color: #4CAF50;
+            }
+
+            .add {
+                max-width: 600px;
+                margin: 0 auto 20px;
+                padding: 15px;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            input, select, button {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px auto;
+                background: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            a {
+                text-decoration: none;
+                color: #4CAF50;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Edit Product</h1>
+        <form method="POST">
+        <input type="text" name="name" value="{{ product.name }}" required>
+        <select name="category">
+            {% for category in categories %}
+            <option value="{{ category.id }}" {% if category.id == product.category_id %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+            {% endfor %}
+        </select>
+        <input type="number" name="price" step="0.01" value="{{ product.price }}" required>
+        <input type="number" name="stock_level" value="{{ product.stock_level }}" required>
+        <button type="submit">Save Changes</button>
+    </form>
+    </body>
+</html>
